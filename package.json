@@ -42,14 +42,14 @@
   "author": "ptheus",
   "license": "MIT",
   "devDependencies": {
-    "@types/node": "^20.14.0",
-    "@typescript-eslint/eslint-plugin": "^7.13.0",
-    "@typescript-eslint/parser": "^7.13.0",
-    "@vitest/coverage-v8": "^1.6.0",
-    "eslint": "^8.57.0",
+    "@types/node": "^26.0.1",
+    "@typescript-eslint/eslint-plugin": "^8.62.0",
+    "@typescript-eslint/parser": "^8.62.0",
+    "@vitest/coverage-v8": "^4.1.9",
+    "eslint": "^10.6.0",
     "tsup": "^8.1.0",
-    "typescript": "^5.4.5",
-    "vitest": "^1.6.0"
+    "typescript": "^6.0.3",
+    "vitest": "^4.1.9"
   },
   "dependencies": {
     "cheerio": "^1.0.0",
