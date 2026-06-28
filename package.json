@@ -48,7 +48,7 @@
   "homepage": "https://github.com/PtheusLab/tools#readme",
   "bugs": {
     "url": "https://github.com/PtheusLab/tools/issues"
-  }
+  },
   "license": "MIT",
   "devDependencies": {
     "@types/node": "^22.0.0",
