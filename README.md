@@ -135,9 +135,40 @@ interface ScraperOptions {
 const result = await getGitHubRepository("owner", "repo", { timeoutMs: 5000 });
 ```
 
+## Examples
+
+Ready-to-run example scripts are available in the `examples/` folder.
+Run any of them with `npx tsx`:
+
+```bash
+# GitHub — fetch repos, users, and trending
+npx tsx examples/github.ts
+
+# npm Registry — fetch packages and search
+npx tsx examples/npm-registry.ts
+
+# Hacker News — fetch feeds and items
+npx tsx examples/hacker-news.ts
+
+# Exchange Rates — convert currencies
+npx tsx examples/exchange-rate.ts
+
+# All scrapers — combined dashboard
+npx tsx examples/all-scrapers.ts
+```
+
+Each file is self-contained and covers the full API surface for that scraper,
+including error handling and `ScraperOptions` usage.
+
 ## Project Structure
 
 ```
+examples/
+├── github.ts             # GitHub scraper examples
+├── npm-registry.ts       # npm Registry scraper examples
+├── hacker-news.ts        # Hacker News scraper examples
+├── exchange-rate.ts      # Exchange Rate scraper examples
+└── all-scrapers.ts       # Combined dashboard (semua scraper)
 src/
 ├── index.ts              # Public API entry point
 ├── core/
