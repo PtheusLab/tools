@@ -222,28 +222,37 @@ npx tsx examples/all-scrapers.ts
 │   ├── hacker-news.ts        # Hacker News scraper examples
 │   ├── exchange-rate.ts      # Exchange Rate scraper examples
 │   └── all-scrapers.ts       # Combined dashboard
-├── src/
-│   ├── index.ts              # Public API entry point
-│   ├── core/
-│   │   ├── http.ts           # HTTP client & error classification
-│   │   └── result.ts         # ok() / err() helpers
-│   ├── scrapers/
-│   │   ├── github.ts
-│   │   ├── npm-registry.ts
-│   │   ├── hacker-news.ts
-│   │   └── exchange-rate.ts
-│   ├── types/
-│   │   ├── common.ts
-│   │   ├── github.ts
-│   │   ├── npm-registry.ts
-│   │   ├── hacker-news.ts
-│   │   └── exchange-rate.ts
-│   └── utils/
-│       ├── parse.ts
-│       └── url.ts
-└── tests/
-    ├── scrapers/             # Per-scraper test suites
+└── src/
+    ├── index.ts              # Public API entry point
+    ├── core/
+    │   ├── http.ts           # HTTP client & error classification
+    │   └── result.ts         # ok() / err() helpers
+    ├── scrapers/
+    │   ├── finance/
+    │   │   └── exchange-rate/
+    │   │       ├── index.ts
+    │   │       ├── types.ts
+    │   │       └── exchange-rate.test.ts
+    │   ├── registry/
+    │   │   ├── github/
+    │   │   │   ├── index.ts
+    │   │   │   ├── types.ts
+    │   │   │   └── github.test.ts
+    │   │   └── npm/
+    │   │       ├── index.ts
+    │   │       ├── types.ts
+    │   │       └── npm.test.ts
+    │   └── social/
+    │       └── hacker-news/
+    │           ├── index.ts
+    │           ├── types.ts
+    │           └── hacker-news.test.ts
+    ├── types/
+    │   └── common.ts         # Shared Result<T>, ScraperError, ScraperOptions
     └── utils/
+        ├── parse.ts
+        ├── parse.test.ts
+        └── url.ts
 ```
 
 ---
@@ -252,13 +261,14 @@ npx tsx examples/all-scrapers.ts
 
 ### Adding a New Scraper
 
-1. Add type definitions in `src/types/your-scraper.ts`
-2. Export them from `src/types/index.ts`
-3. Implement the scraper in `src/scrapers/your-scraper.ts`
-4. Export functions from `src/index.ts`
-5. Add an entry to `tsup.config.ts`
-6. Write tests in `tests/scrapers/your-scraper.test.ts`
-7. Add an example script in `examples/your-scraper.ts`
+1. Create a new folder under the appropriate category in `src/scrapers/{category}/{name}/`
+2. Add `types.ts` with your type definitions
+3. Implement the scraper in `index.ts`
+4. Write tests in `{name}.test.ts` (co-located in the same folder)
+5. Export types from `src/types/index.ts`
+6. Export functions from `src/index.ts`
+7. Add an entry to `tsup.config.ts` and `package.json` exports
+8. Add an example script in `examples/{name}.ts`
 
 ### Development
 
