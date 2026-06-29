@@ -1,6 +1,6 @@
 {
   "name": "@ptheus/tools",
-  "version": "0.1.1",
+  "version": "0.1.0",
   "description": "A collection of ready-to-use web scrapers as importable functions",
   "type": "module",
   "main": "dist/index.js",
@@ -8,14 +8,14 @@
   "types": "dist/index.d.ts",
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "import": "./dist/index.mjs",
-      "require": "./dist/index.js",
-      "types": "./dist/index.d.ts"
+      "require": "./dist/index.js"
     },
     "./scrapers/*": {
+      "types": "./dist/scrapers/*.d.ts",
       "import": "./dist/scrapers/*.mjs",
-      "require": "./dist/scrapers/*.js",
-      "types": "./dist/scrapers/*.d.ts"
+      "require": "./dist/scrapers/*.js"
     }
   },
   "files": [
