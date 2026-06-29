@@ -8,7 +8,7 @@
 [![npm downloads](https://img.shields.io/npm/dm/@ptheus/tools?color=CB3837&logo=npm)](https://www.npmjs.com/package/@ptheus/tools)
 [![CI](https://img.shields.io/github/actions/workflow/status/PtheusLab/tools/ci.yml?branch=main&label=CI&logo=github)](https://github.com/PtheusLab/tools/actions/workflows/ci.yml)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.x-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
-[![Node.js](https://img.shields.io/badge/Node.js-%3E%3D18-339933?logo=node.js&logoColor=white)](https://nodejs.org/)
+[![Node.js](https://img.shields.io/badge/Node.js-%3E%3D21-339933?logo=node.js&logoColor=white)](https://nodejs.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
 
 [Installation](#installation) · [Quick Start](#quick-start) · [API Reference](#api-reference) · [Error Handling](#error-handling) · [Examples](#examples) · [Contributing](#contributing)
@@ -36,7 +36,7 @@
 npm install @ptheus/tools
 ```
 
-> **Requirements:** Node.js ≥ 18
+> **Requirements:** Node.js ≥ 21
 
 ---
 
