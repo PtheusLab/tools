@@ -14,8 +14,8 @@ describe("GitHub Scraper", () => {
       if (!result.success) return;
 
       expect(result.data.name).toBe("react");
-      expect(result.data.fullName).toBe("facebook/react");
-      expect(result.data.url).toBe("https://github.com/facebook/react");
+      expect(result.data.fullName).toBe("react/react");
+      expect(result.data.url).toBe("https://github.com/react/react");
       expect(typeof result.data.stars).toBe("number");
       expect(result.data.stars).toBeGreaterThan(200_000);
       expect(typeof result.data.forks).toBe("number");
