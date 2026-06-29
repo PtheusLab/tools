@@ -1,14 +1,14 @@
 import { load } from "cheerio";
 import { z } from "zod";
-import { createHttpClient, classifyFetchError, ok, err } from "../core/index.js";
-import { parseKiloSuffix, parseIntOrNull } from "../utils/index.js";
-import type { Result, ScraperOptions } from "../types/index.js";
+import { createHttpClient, classifyFetchError, ok, err } from "../../../core/index.js";
+import { parseKiloSuffix, parseIntOrNull } from "../../../utils/index.js";
+import type { Result, ScraperOptions } from "../../../types/index.js";
 import type {
   GitHubRepository,
   GitHubUser,
   GitHubTrendingRepository,
   GitHubTrendingOptions,
-} from "../types/github.js";
+} from "./types.js";
 
 const GITHUB_API_BASE = "https://api.github.com";
 const GITHUB_BASE = "https://github.com";

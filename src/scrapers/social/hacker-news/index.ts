@@ -1,12 +1,12 @@
 import { z } from "zod";
-import { createHttpClient, classifyFetchError, ok, err } from "../core/index.js";
-import type { Result, ScraperOptions } from "../types/index.js";
+import { createHttpClient, classifyFetchError, ok, err } from "../../../core/index.js";
+import type { Result, ScraperOptions } from "../../../types/index.js";
 import type {
   HackerNewsItem,
   HackerNewsStory,
   HackerNewsFeedType,
   HackerNewsFeedOptions,
-} from "../types/hacker-news.js";
+} from "./types.js";
 
 const HN_API_BASE = "https://hacker-news.firebaseio.com/v0";
 

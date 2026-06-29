@@ -3,7 +3,7 @@ import {
   getHackerNewsItem,
   getHackerNewsFeed,
   getHackerNewsMaxItem,
-} from "../../src/scrapers/hacker-news.js";
+} from "./index.js";
 
 describe("Hacker News Scraper", () => {
   describe("getHackerNewsItem", () => {

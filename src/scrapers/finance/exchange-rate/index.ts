@@ -1,7 +1,7 @@
 import { z } from "zod";
-import { createHttpClient, classifyFetchError, ok, err } from "../core/index.js";
-import type { Result, ScraperOptions } from "../types/index.js";
-import type { ExchangeRate, ConvertedAmount } from "../types/exchange-rate.js";
+import { createHttpClient, classifyFetchError, ok, err } from "../../../core/index.js";
+import type { Result, ScraperOptions } from "../../../types/index.js";
+import type { ExchangeRate, ConvertedAmount } from "./types.js";
 
 const EXCHANGE_RATE_API_BASE = "https://open.er-api.com/v6";
 

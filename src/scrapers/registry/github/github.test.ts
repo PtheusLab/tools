@@ -3,7 +3,7 @@ import {
   getGitHubRepository,
   getGitHubUser,
   getGitHubTrending,
-} from "../../src/scrapers/github.js";
+} from "./index.js";
 
 describe("GitHub Scraper", () => {
   describe("getGitHubRepository", () => {
@@ -56,7 +56,6 @@ describe("GitHub Scraper", () => {
       expect(result.success).toBe(false);
       if (result.success) return;
 
-      // RATE_LIMITED means the token is missing or exhausted — skip rather than fail
       if (result.error.code === "RATE_LIMITED") return;
 
       expect(result.error.code).toBe("NOT_FOUND");
@@ -115,7 +114,6 @@ describe("GitHub Scraper", () => {
       expect(result.success).toBe(false);
       if (result.success) return;
 
-      // RATE_LIMITED means the token is missing or exhausted — skip rather than fail
       if (result.error.code === "RATE_LIMITED") return;
 
       expect(result.error.code).toBe("NOT_FOUND");

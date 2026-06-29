@@ -4,7 +4,7 @@ export type {
   GitHubUser,
   GitHubTrendingRepository,
   GitHubTrendingOptions,
-} from "./github.js";
+} from "../scrapers/registry/github/types.js";
 export type {
   NpmPackage,
   NpmPerson,
@@ -12,16 +12,16 @@ export type {
   NpmDownloads,
   NpmSearchResult,
   NpmSearchOptions,
-} from "./npm-registry.js";
+} from "../scrapers/registry/npm/types.js";
 export type {
   HackerNewsItem,
   HackerNewsItemType,
   HackerNewsStory,
   HackerNewsFeedType,
   HackerNewsFeedOptions,
-} from "./hacker-news.js";
+} from "../scrapers/social/hacker-news/types.js";
 export type {
   ExchangeRate,
   ConvertedAmount,
   ExchangeRateOptions,
-} from "./exchange-rate.js";
+} from "../scrapers/finance/exchange-rate/types.js";

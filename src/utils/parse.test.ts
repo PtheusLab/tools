@@ -4,8 +4,8 @@ import {
   parseFloatOrNull,
   normalizeWhitespace,
   parseKiloSuffix,
-} from "../../src/utils/parse.js";
-import { buildUrl } from "../../src/utils/url.js";
+} from "./parse.js";
+import { buildUrl } from "./url.js";
 
 describe("parse utils", () => {
   describe("parseIntOrNull", () => {

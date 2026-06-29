@@ -1,15 +1,15 @@
-export { getGitHubRepository, getGitHubUser, getGitHubTrending } from "./scrapers/github.js";
-export { getNpmPackage, searchNpmPackages } from "./scrapers/npm-registry.js";
+export { getGitHubRepository, getGitHubUser, getGitHubTrending } from "./scrapers/registry/github/index.js";
+export { getNpmPackage, searchNpmPackages } from "./scrapers/registry/npm/index.js";
 export {
   getHackerNewsItem,
   getHackerNewsFeed,
   getHackerNewsMaxItem,
-} from "./scrapers/hacker-news.js";
+} from "./scrapers/social/hacker-news/index.js";
 export {
   getExchangeRates,
   convertCurrency,
   getSupportedCurrencies,
-} from "./scrapers/exchange-rate.js";
+} from "./scrapers/finance/exchange-rate/index.js";
 
 export type {
   Result,

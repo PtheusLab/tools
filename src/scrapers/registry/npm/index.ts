@@ -1,13 +1,13 @@
 import { z } from "zod";
-import { createHttpClient, classifyFetchError, ok, err } from "../core/index.js";
-import { buildUrl } from "../utils/index.js";
-import type { Result, ScraperOptions } from "../types/index.js";
+import { createHttpClient, classifyFetchError, ok, err } from "../../../core/index.js";
+import { buildUrl } from "../../../utils/index.js";
+import type { Result, ScraperOptions } from "../../../types/index.js";
 import type {
   NpmPackage,
   NpmPerson,
   NpmSearchResult,
   NpmSearchOptions,
-} from "../types/npm-registry.js";
+} from "./types.js";
 
 const NPM_REGISTRY_BASE = "https://registry.npmjs.org";
 const NPM_API_BASE = "https://api.npmjs.org";

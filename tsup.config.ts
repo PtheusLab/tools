@@ -3,10 +3,10 @@ import { defineConfig } from "tsup";
 export default defineConfig({
   entry: {
     index: "src/index.ts",
-    "scrapers/github": "src/scrapers/github.ts",
-    "scrapers/npm-registry": "src/scrapers/npm-registry.ts",
-    "scrapers/hacker-news": "src/scrapers/hacker-news.ts",
-    "scrapers/exchange-rate": "src/scrapers/exchange-rate.ts",
+    "scrapers/registry/github": "src/scrapers/registry/github/index.ts",
+    "scrapers/registry/npm": "src/scrapers/registry/npm/index.ts",
+    "scrapers/social/hacker-news": "src/scrapers/social/hacker-news/index.ts",
+    "scrapers/finance/exchange-rate": "src/scrapers/finance/exchange-rate/index.ts",
   },
   format: ["cjs", "esm"],
   dts: true,

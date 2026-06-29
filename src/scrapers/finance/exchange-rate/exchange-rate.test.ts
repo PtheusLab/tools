@@ -3,7 +3,7 @@ import {
   getExchangeRates,
   convertCurrency,
   getSupportedCurrencies,
-} from "../../src/scrapers/exchange-rate.js";
+} from "./index.js";
 
 describe("Exchange Rate Scraper", () => {
   describe("getExchangeRates", () => {

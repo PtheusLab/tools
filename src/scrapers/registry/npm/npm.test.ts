@@ -2,7 +2,7 @@ import { describe, it, expect } from "vitest";
 import {
   getNpmPackage,
   searchNpmPackages,
-} from "../../src/scrapers/npm-registry.js";
+} from "./index.js";
 
 describe("NPM Registry Scraper", () => {
   describe("getNpmPackage", () => {

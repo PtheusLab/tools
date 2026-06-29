@@ -1,6 +1,6 @@
 {
   "name": "@ptheus/tools",
-  "version": "0.1.2",
+  "version": "0.1.0",
   "description": "A collection of ready-to-use web scrapers as importable functions",
   "type": "module",
   "main": "dist/index.js",
@@ -12,10 +12,25 @@
       "import": "./dist/index.mjs",
       "require": "./dist/index.js"
     },
-    "./scrapers/*": {
-      "types": "./dist/scrapers/*.d.ts",
-      "import": "./dist/scrapers/*.mjs",
-      "require": "./dist/scrapers/*.js"
+    "./scrapers/registry/github": {
+      "types": "./dist/scrapers/registry/github.d.ts",
+      "import": "./dist/scrapers/registry/github.mjs",
+      "require": "./dist/scrapers/registry/github.js"
+    },
+    "./scrapers/registry/npm": {
+      "types": "./dist/scrapers/registry/npm.d.ts",
+      "import": "./dist/scrapers/registry/npm.mjs",
+      "require": "./dist/scrapers/registry/npm.js"
+    },
+    "./scrapers/social/hacker-news": {
+      "types": "./dist/scrapers/social/hacker-news.d.ts",
+      "import": "./dist/scrapers/social/hacker-news.mjs",
+      "require": "./dist/scrapers/social/hacker-news.js"
+    },
+    "./scrapers/finance/exchange-rate": {
+      "types": "./dist/scrapers/finance/exchange-rate.d.ts",
+      "import": "./dist/scrapers/finance/exchange-rate.mjs",
+      "require": "./dist/scrapers/finance/exchange-rate.js"
     }
   },
   "files": [
@@ -29,8 +44,8 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "test:coverage": "vitest run --coverage",
-    "lint": "eslint src tests",
-    "lint:fix": "eslint src tests --fix",
+    "lint": "eslint src",
+    "lint:fix": "eslint src --fix",
     "typecheck": "tsc --noEmit",
     "prepublishOnly": "npm run typecheck && npm run test && npm run build"
   },

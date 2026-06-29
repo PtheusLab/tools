@@ -6,7 +6,7 @@ export default [
     ignores: ["dist/**", "*.config.ts", "*.config.js"],
   },
   {
-    files: ["src/**/*.ts", "tests/**/*.ts"],
+    files: ["src/**/*.ts"],
     languageOptions: {
       parser: tsparser,
       parserOptions: {
