@@ -4,14 +4,21 @@
 
 **A collection of type-safe web scrapers as importable TypeScript functions.**
 
-[![npm version](https://img.shields.io/npm/v/@ptheus/tools?color=CB3837&label=npm&logo=npm)](https://www.npmjs.com/package/@ptheus/tools)
-[![npm downloads](https://img.shields.io/npm/dm/@ptheus/tools?color=CB3837&logo=npm)](https://www.npmjs.com/package/@ptheus/tools)
-[![CI](https://img.shields.io/github/actions/workflow/status/PtheusLab/tools/ci.yml?branch=main&label=CI&logo=github)](https://github.com/PtheusLab/tools/actions/workflows/ci.yml)
-[![TypeScript](https://img.shields.io/badge/TypeScript-5.x-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
-[![Node.js](https://img.shields.io/badge/Node.js-%3E%3D21-339933?logo=node.js&logoColor=white)](https://nodejs.org/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
+[![npm](https://img.shields.io/npm/v/@ptheus/tools?style=for-the-badge&logo=npm&logoColor=white)](https://www.npmjs.com/package/@ptheus/tools)
+[![Downloads](https://img.shields.io/npm/dm/@ptheus/tools?style=for-the-badge&logo=npm&logoColor=white)](https://www.npmjs.com/package/@ptheus/tools)
+[![GitHub Release](https://img.shields.io/github/v/release/PtheusLab/tools?style=for-the-badge&logo=github)](https://github.com/PtheusLab/tools/releases)
+[![CI](https://img.shields.io/github/actions/workflow/status/PtheusLab/tools/ci.yml?branch=main&style=for-the-badge&logo=github&label=CI)](https://github.com/PtheusLab/tools/actions/workflows/ci.yml)
 
-[Installation](#installation) · [Quick Start](#quick-start) · [API Reference](#api-reference) · [Error Handling](#error-handling) · [Contributing](#contributing)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.x-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![Node.js](https://img.shields.io/badge/Node.js-%E2%89%A521-339933?style=for-the-badge&logo=node.js&logoColor=white)](https://nodejs.org/)
+[![MIT License](https://img.shields.io/github/license/PtheusLab/tools?style=for-the-badge)](./LICENSE)
+[![Types Included](https://img.shields.io/badge/Types-Included-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.npmjs.com/package/@ptheus/tools)
+
+[Installation](#installation) •
+[Quick Start](#quick-start) •
+[API Reference](#api-reference) •
+[Error Handling](#error-handling) •
+[Contributing](#contributing)
 
 </div>
 
