@@ -78,7 +78,7 @@
   "dependencies": {
     "cheerio": "^1.0.0",
     "ofetch": "^1.4.0",
-    "zod": "^3.25.0"
+    "zod": "4.4.3"
   },
   "engines": {
     "node": ">=21.0.0"
