@@ -11,6 +11,7 @@ export {
   convertCurrency,
   getSupportedCurrencies,
 } from "./scrapers/finance/exchange-rate/index.js";
+export { getCryptoPrice, getCryptoMarkets, getCoinList } from "./scrapers/finance/crypto-price/index.js";
 export {
   getWikipediaSummary,
   searchWikipedia,
@@ -43,6 +44,11 @@ export type {
   ExchangeRate,
   ConvertedAmount,
   ExchangeRateOptions,
+  CryptoPrice,
+  CryptoMarket,
+  CryptoCoin,
+  CryptoPriceOptions,
+  CryptoMarketsOptions,
   WikipediaArticleSummary,
   WikipediaSearchResult,
   WikipediaSection,

@@ -46,3 +46,11 @@ export type {
   WikiquoteOptions,
   WikiquoteSearchOptions,
 } from "../scrapers/encyclopedia/wikiquote/types.js";
+
+export type {
+  CryptoPrice,
+  CryptoMarket,
+  CryptoCoin,
+  CryptoPriceOptions,
+  CryptoMarketsOptions,
+} from "../scrapers/finance/crypto-price/types.js";

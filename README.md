@@ -35,6 +35,7 @@
 | **npm Registry** | `getNpmPackage` · `searchNpmPackages` |
 | **Hacker News** | `getHackerNewsFeed` · `getHackerNewsItem` · `getHackerNewsMaxItem` |
 | **Exchange Rates** | `getExchangeRates` · `convertCurrency` · `getSupportedCurrencies` |
+| **Crypto Price** | `getCryptoPrice` · `getCryptoMarkets` · `getCoinList` |
 | **Wikipedia** | `getWikipediaSummary` · `searchWikipedia` · `getWikipediaArticle` |
 | **Wikiquote** | `getWikiquotePage` · `searchWikiquote` |
 
@@ -121,6 +122,19 @@ import { getExchangeRates, convertCurrency, getSupportedCurrencies } from "@pthe
 const rates = await getExchangeRates("USD");
 const converted = await convertCurrency(100, "USD", "IDR");
 const currencies = await getSupportedCurrencies();
+```
+
+**Crypto Price**
+
+```typescript
+import { getCryptoPrice, getCryptoMarkets, getCoinList } from "@ptheus/tools";
+
+const bitcoin = await getCryptoPrice("bitcoin");
+const top10 = await getCryptoMarkets({ limit: 10 });
+const allCoins = await getCoinList();
+
+// Supports custom currency (default: "usd")
+const btcIdr = await getCryptoPrice("bitcoin", { currency: "idr" });
 ```
 
 ### Encyclopedia
