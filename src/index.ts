@@ -10,6 +10,11 @@ export {
   convertCurrency,
   getSupportedCurrencies,
 } from "./scrapers/finance/exchange-rate/index.js";
+export {
+  getWikipediaSummary,
+  searchWikipedia,
+  getWikipediaArticle,
+} from "./scrapers/encyclopedia/wikipedia/index.js";
 
 export type {
   Result,
@@ -34,4 +39,10 @@ export type {
   ExchangeRate,
   ConvertedAmount,
   ExchangeRateOptions,
+  WikipediaArticleSummary,
+  WikipediaSearchResult,
+  WikipediaSection,
+  WikipediaArticleFull,
+  WikipediaSearchOptions,
+  WikipediaArticleOptions,
 } from "./types/index.js";

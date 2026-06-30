@@ -27,6 +27,7 @@
 | **npm Registry** | `getNpmPackage` · `searchNpmPackages` |
 | **Hacker News** | `getHackerNewsFeed` · `getHackerNewsItem` · `getHackerNewsMaxItem` |
 | **Exchange Rates** | `getExchangeRates` · `convertCurrency` · `getSupportedCurrencies` |
+| **Wikipedia** | `getWikipediaSummary` · `searchWikipedia` · `getWikipediaArticle` |
 
 ---
 
@@ -132,6 +133,28 @@ const currencies = await getSupportedCurrencies();
 // currencies.data → string[]  e.g. ["AED", "AFN", "ALL", ...]
 ```
 
+### Wikipedia
+
+```typescript
+import { getWikipediaSummary, searchWikipedia, getWikipediaArticle } from "@ptheus/tools";
+
+// Fetch a concise summary (intro paragraph + metadata)
+const summary = await getWikipediaSummary("TypeScript");
+// summary.data → WikipediaArticleSummary { title, extract, description, thumbnailUrl, lastEdited, ... }
+
+// Search articles by keyword
+const results = await searchWikipedia("open source software", { limit: 5 });
+// results.data → WikipediaSearchResult[] { title, snippet, url, wordCount, lastEdited, ... }
+
+// Fetch a full article parsed into sections
+const article = await getWikipediaArticle("Node.js");
+// article.data → WikipediaArticleFull { title, sections, plainText, ... }
+// sections → WikipediaSection[] { title, level, content }
+
+// All three functions accept a language option (default: "en")
+const idSummary = await getWikipediaSummary("Pemrograman komputer", { lang: "id" });
+```
+
 ### Scraper Options
 
 Every function accepts an optional `ScraperOptions` as its last parameter:
@@ -206,6 +229,9 @@ npx tsx examples/hacker-news.ts
 # Exchange Rates — rates, conversion, currency list
 npx tsx examples/exchange-rate.ts
 
+# Wikipedia — summary, search, full article
+npx tsx examples/wikipedia.ts
+
 # Combined dashboard — all scrapers at once
 npx tsx examples/all-scrapers.ts
 ```
@@ -221,6 +247,7 @@ npx tsx examples/all-scrapers.ts
 │   ├── npm-registry.ts       # npm Registry scraper examples
 │   ├── hacker-news.ts        # Hacker News scraper examples
 │   ├── exchange-rate.ts      # Exchange Rate scraper examples
+│   ├── wikipedia.ts          # Wikipedia scraper examples
 │   └── all-scrapers.ts       # Combined dashboard
 └── src/
     ├── index.ts              # Public API entry point
@@ -228,6 +255,11 @@ npx tsx examples/all-scrapers.ts
     │   ├── http.ts           # HTTP client & error classification
     │   └── result.ts         # ok() / err() helpers
     ├── scrapers/
+    │   ├── encyclopedia/
+    │   │   └── wikipedia/
+    │   │       ├── index.ts
+    │   │       ├── types.ts
+    │   │       └── wikipedia.test.ts
     │   ├── finance/
     │   │   └── exchange-rate/
     │   │       ├── index.ts

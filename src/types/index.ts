@@ -25,3 +25,11 @@ export type {
   ConvertedAmount,
   ExchangeRateOptions,
 } from "../scrapers/finance/exchange-rate/types.js";
+export type {
+  WikipediaArticleSummary,
+  WikipediaSearchResult,
+  WikipediaSection,
+  WikipediaArticleFull,
+  WikipediaSearchOptions,
+  WikipediaArticleOptions,
+} from "../scrapers/encyclopedia/wikipedia/types.js";
