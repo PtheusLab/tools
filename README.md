@@ -36,7 +36,7 @@
 | **Hacker News** | `getHackerNewsFeed` · `getHackerNewsItem` · `getHackerNewsMaxItem` |
 | **Exchange Rates** | `getExchangeRates` · `convertCurrency` · `getSupportedCurrencies` |
 | **Wikipedia** | `getWikipediaSummary` · `searchWikipedia` · `getWikipediaArticle` |
-| **Wikiquote** | `getWikiquotePage` | `searchWikiquote` |
+| **Wikiquote** | `getWikiquotePage` · `searchWikiquote` |
 
 ---
 
