@@ -70,9 +70,6 @@ export function buildScraperError(
 
 export function classifyFetchError(error: unknown): ScraperError {
   if (error instanceof Error) {
-    // ofetch exposes a numeric statusCode on its FetchError — check this
-    // first so 404/429 responses aren't misclassified as NETWORK_ERROR when
-    // string matching fails (e.g. when the message format changes).
     const statusCode = (error as { statusCode?: number }).statusCode;
     if (statusCode === 404) {
       return buildScraperError("NOT_FOUND", "Resource not found", error);

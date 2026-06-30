@@ -11,7 +11,7 @@
 [![Node.js](https://img.shields.io/badge/Node.js-%3E%3D21-339933?logo=node.js&logoColor=white)](https://nodejs.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
 
-[Installation](#installation) · [Quick Start](#quick-start) · [API Reference](#api-reference) · [Error Handling](#error-handling) · [Examples](#examples) · [Contributing](#contributing)
+[Installation](#installation) · [Quick Start](#quick-start) · [API Reference](#api-reference) · [Error Handling](#error-handling) · [Contributing](#contributing)
 
 </div>
 
@@ -46,14 +46,13 @@ npm install @ptheus/tools
 ```typescript
 import { getGitHubRepository } from "@ptheus/tools";
 
-// Every function returns Result<T> — never throws
 const result = await getGitHubRepository("facebook", "react");
 
 if (result.success) {
-  console.log(result.data.stars);      // number
-  console.log(result.data.language);   // string | null
+  console.log(result.data.stars);
+  console.log(result.data.language);
 } else {
-  console.error(result.error.code);    // "NOT_FOUND" | "NETWORK_ERROR" | ...
+  console.error(result.error.code);
 }
 ```
 
@@ -66,20 +65,9 @@ if (result.success) {
 ```typescript
 import { getGitHubRepository, getGitHubUser, getGitHubTrending } from "@ptheus/tools";
 
-// Fetch a repository
 const repo = await getGitHubRepository("microsoft", "vscode");
-// repo.data → GitHubRepository { stars, forks, language, topics, license, ... }
-
-// Fetch a user profile
 const user = await getGitHubUser("torvalds");
-// user.data → GitHubUser { login, name, bio, followers, publicRepos, ... }
-
-// Fetch trending repositories
-const trending = await getGitHubTrending({
-  language: "typescript",   // optional
-  since: "weekly",          // "daily" | "weekly" | "monthly"
-});
-// trending.data → GitHubTrendingRepository[] { rank, fullName, stars, starsToday, ... }
+const trending = await getGitHubTrending({ language: "typescript", since: "weekly" });
 ```
 
 ### npm Registry
@@ -87,14 +75,9 @@ const trending = await getGitHubTrending({
 ```typescript
 import { getNpmPackage, searchNpmPackages } from "@ptheus/tools";
 
-// Fetch a package (supports scoped packages)
 const pkg = await getNpmPackage("lodash");
 const scoped = await getNpmPackage("@tanstack/react-query");
-// pkg.data → NpmPackage { version, downloads, dependencies, maintainers, ... }
-
-// Search packages
 const results = await searchNpmPackages("react state management", { limit: 5 });
-// results.data → NpmSearchResult[] { name, version, description, score, ... }
 ```
 
 ### Hacker News
@@ -102,16 +85,8 @@ const results = await searchNpmPackages("react state management", { limit: 5 });
 ```typescript
 import { getHackerNewsFeed, getHackerNewsItem, getHackerNewsMaxItem } from "@ptheus/tools";
 
-// Fetch a feed
 const feed = await getHackerNewsFeed("top", { limit: 20 });
-// feed type: "top" | "new" | "best" | "ask" | "show" | "job"
-// feed.data → HackerNewsStory[] { title, url, score, descendants, by, ... }
-
-// Fetch a specific item
 const item = await getHackerNewsItem(8863);
-// item.data → HackerNewsItem { id, type, title, score, kids, ... }
-
-// Get the latest item ID
 const max = await getHackerNewsMaxItem();
 ```
 
@@ -120,17 +95,9 @@ const max = await getHackerNewsMaxItem();
 ```typescript
 import { getExchangeRates, convertCurrency, getSupportedCurrencies } from "@ptheus/tools";
 
-// Get all rates relative to a base currency
 const rates = await getExchangeRates("USD");
-// rates.data → ExchangeRate { base, date, rates: Record<string, number> }
-
-// Convert an amount between currencies
 const converted = await convertCurrency(100, "USD", "IDR");
-// converted.data → ConvertedAmount { from, to, amount, result, rate, date }
-
-// List all supported currency codes
 const currencies = await getSupportedCurrencies();
-// currencies.data → string[]  e.g. ["AED", "AFN", "ALL", ...]
 ```
 
 ### Wikipedia
@@ -138,31 +105,20 @@ const currencies = await getSupportedCurrencies();
 ```typescript
 import { getWikipediaSummary, searchWikipedia, getWikipediaArticle } from "@ptheus/tools";
 
-// Fetch a concise summary (intro paragraph + metadata)
 const summary = await getWikipediaSummary("TypeScript");
-// summary.data → WikipediaArticleSummary { title, extract, description, thumbnailUrl, lastEdited, ... }
-
-// Search articles by keyword
 const results = await searchWikipedia("open source software", { limit: 5 });
-// results.data → WikipediaSearchResult[] { title, snippet, url, wordCount, lastEdited, ... }
-
-// Fetch a full article parsed into sections
 const article = await getWikipediaArticle("Node.js");
-// article.data → WikipediaArticleFull { title, sections, plainText, ... }
-// sections → WikipediaSection[] { title, level, content }
 
-// All three functions accept a language option (default: "en")
+// All three accept a language option (default: "en")
 const idSummary = await getWikipediaSummary("Pemrograman komputer", { lang: "id" });
 ```
 
 ### Scraper Options
 
-Every function accepts an optional `ScraperOptions` as its last parameter:
-
 ```typescript
 interface ScraperOptions {
-  timeoutMs?: number;   // default: 10000 (10 seconds)
-  userAgent?: string;   // default: "@ptheus/tools scraper"
+  timeoutMs?: number;  // default: 10000 (10 seconds)
+  userAgent?: string;  // default: "@ptheus/tools scraper"
 }
 
 const result = await getGitHubRepository("owner", "repo", { timeoutMs: 5000 });
@@ -180,15 +136,13 @@ type Result<T> =
   | { success: false; error: ScraperError };
 
 type ScraperErrorCode =
-  | "NETWORK_ERROR"     // Request failed or timed out
-  | "PARSE_ERROR"       // Could not parse the response
-  | "VALIDATION_ERROR"  // Response shape was unexpected
-  | "NOT_FOUND"         // Resource does not exist
-  | "RATE_LIMITED"      // Too many requests
-  | "UNKNOWN";          // Unclassified error
+  | "NETWORK_ERROR"
+  | "PARSE_ERROR"
+  | "VALIDATION_ERROR"
+  | "NOT_FOUND"
+  | "RATE_LIMITED"
+  | "UNKNOWN";
 ```
-
-Use the `code` field to handle errors precisely:
 
 ```typescript
 const result = await getNpmPackage("some-package");
@@ -212,48 +166,15 @@ if (!result.success) {
 
 ---
 
-## Examples
-
-Runnable example scripts live in the [`examples/`](./examples) folder. Each file covers the full API surface for its scraper, including error handling and `ScraperOptions`.
-
-```bash
-# GitHub — repos, users, trending
-npx tsx examples/github.ts
-
-# npm Registry — packages, scoped packages, search
-npx tsx examples/npm-registry.ts
-
-# Hacker News — feeds and items
-npx tsx examples/hacker-news.ts
-
-# Exchange Rates — rates, conversion, currency list
-npx tsx examples/exchange-rate.ts
-
-# Wikipedia — summary, search, full article
-npx tsx examples/wikipedia.ts
-
-# Combined dashboard — all scrapers at once
-npx tsx examples/all-scrapers.ts
-```
-
----
-
 ## Project Structure
 
 ```
 @ptheus/tools
-├── examples/
-│   ├── github.ts             # GitHub scraper examples
-│   ├── npm-registry.ts       # npm Registry scraper examples
-│   ├── hacker-news.ts        # Hacker News scraper examples
-│   ├── exchange-rate.ts      # Exchange Rate scraper examples
-│   ├── wikipedia.ts          # Wikipedia scraper examples
-│   └── all-scrapers.ts       # Combined dashboard
 └── src/
-    ├── index.ts              # Public API entry point
+    ├── index.ts
     ├── core/
-    │   ├── http.ts           # HTTP client & error classification
-    │   └── result.ts         # ok() / err() helpers
+    │   ├── http.ts
+    │   └── result.ts
     ├── scrapers/
     │   ├── encyclopedia/
     │   │   └── wikipedia/
@@ -280,7 +201,7 @@ npx tsx examples/all-scrapers.ts
     │           ├── types.ts
     │           └── hacker-news.test.ts
     ├── types/
-    │   └── common.ts         # Shared Result<T>, ScraperError, ScraperOptions
+    │   └── common.ts
     └── utils/
         ├── parse.ts
         ├── parse.test.ts
@@ -293,24 +214,23 @@ npx tsx examples/all-scrapers.ts
 
 ### Adding a New Scraper
 
-1. Create a new folder under the appropriate category in `src/scrapers/{category}/{name}/`
+1. Create a new folder under `src/scrapers/{category}/{name}/`
 2. Add `types.ts` with your type definitions
 3. Implement the scraper in `index.ts`
-4. Write tests in `{name}.test.ts` (co-located in the same folder)
+4. Write tests in `{name}.test.ts`
 5. Export types from `src/types/index.ts`
 6. Export functions from `src/index.ts`
 7. Add an entry to `tsup.config.ts` and `package.json` exports
-8. Add an example script in `examples/{name}.ts`
 
 ### Development
 
 ```bash
 npm install
-npm run typecheck     # TypeScript check
-npm run lint          # Lint source and tests
-npm run test          # Run all tests
-npm run test:watch    # Watch mode
-npm run build         # Build for production
+npm run typecheck
+npm run lint
+npm run test
+npm run test:watch
+npm run build
 ```
 
 ---

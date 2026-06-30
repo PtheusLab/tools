@@ -11,15 +11,11 @@ import type {
   WikipediaSearchOptions,
 } from "./types.js";
 
-// Wikipedia REST API (summary / page content)
 const WIKI_REST_BASE = (lang: string): string =>
   `https://${lang}.wikipedia.org/api/rest_v1`;
 
-// Wikipedia Action API (search)
 const WIKI_ACTION_BASE = (lang: string): string =>
   `https://${lang}.wikipedia.org/w/api.php`;
-
-// ─── Zod schemas ───────────────────────────────────────────────────────────
 
 const thumbnailSchema = z.object({
   source: z.string(),
@@ -66,8 +62,6 @@ const parsedPageSchema = z.object({
   }),
 });
 
-// ─── Mappers ───────────────────────────────────────────────────────────────
-
 function mapSummary(
   raw: z.infer<typeof summaryApiSchema>,
   lang: string
@@ -86,10 +80,8 @@ function mapSummary(
   };
 }
 
-/** Strip HTML tags and normalise whitespace */
 function htmlToText(html: string): string {
   const $ = load(html);
-  // Remove elements that don't contain useful prose
   $(
     "table, .mw-editsection, .reference, sup.reference, .navbox, " +
       ".infobox, .sidebar, script, style, .thumb, .reflist, " +
@@ -98,18 +90,16 @@ function htmlToText(html: string): string {
   return $.text().replace(/\s+/g, " ").trim();
 }
 
-/** Parse rendered HTML into structured sections */
 function parseSections(html: string): WikipediaSection[] {
   const $ = load(html);
   const sections: WikipediaSection[] = [];
 
-  // Collect lead section (everything before the first heading)
   const leadParagraphs: string[] = [];
   $("div.mw-parser-output")
     .children()
     .each((_i, el) => {
       const tag = (el as { tagName?: string }).tagName?.toLowerCase() ?? "";
-      if (/^h[1-6]$/.test(tag)) return false; // stop at first heading
+      if (/^h[1-6]$/.test(tag)) return false;
       if (tag === "p") {
         const text = $(el).text().trim();
         if (text) leadParagraphs.push(text);
@@ -124,7 +114,6 @@ function parseSections(html: string): WikipediaSection[] {
     });
   }
 
-  // Collect subsequent headings and their content
   let currentHeading: WikipediaSection | null = null;
   let contentBuffer: string[] = [];
 
@@ -141,11 +130,10 @@ function parseSections(html: string): WikipediaSection[] {
             content: contentBuffer.join("\n\n"),
           });
         }
-        // Remove edit links from heading text
         $(el).find(".mw-editsection").remove();
         currentHeading = {
           title: $(el).text().trim(),
-          level: parseInt(headingMatch[1] ?? "2", 10) - 1, // h2 → level 1, h3 → level 2, …
+          level: parseInt(headingMatch[1] ?? "2", 10) - 1,
           content: "",
         };
         contentBuffer = [];
@@ -165,17 +153,6 @@ function parseSections(html: string): WikipediaSection[] {
   return sections;
 }
 
-// ─── Public API ────────────────────────────────────────────────────────────
-
-/**
- * Fetch a concise summary for a Wikipedia article by its title.
- *
- * Uses the Wikipedia REST API `/page/summary/{title}` endpoint which
- * returns the introductory paragraph and metadata.
- *
- * @example
- * const result = await getWikipediaSummary("JavaScript");
- */
 export async function getWikipediaSummary(
   title: string,
   articleOptions: WikipediaArticleOptions = {},
@@ -207,12 +184,6 @@ export async function getWikipediaSummary(
   }
 }
 
-/**
- * Search Wikipedia articles by keyword.
- *
- * @example
- * const result = await searchWikipedia("TypeScript programming language", { limit: 5 });
- */
 export async function searchWikipedia(
   query: string,
   searchOptions: WikipediaSearchOptions = {},
@@ -253,7 +224,6 @@ export async function searchWikipedia(
       (item) => ({
         pageId: item.pageid,
         title: item.title,
-        // Strip HTML highlight tags (<span class="searchmatch">…</span>)
         snippet: item.snippet.replace(/<[^>]+>/g, ""),
         url: `https://${lang}.wikipedia.org/wiki/${encodeURIComponent(
           item.title.replace(/ /g, "_")
@@ -270,15 +240,6 @@ export async function searchWikipedia(
   }
 }
 
-/**
- * Fetch the full content of a Wikipedia article, parsed into sections.
- *
- * Uses the Action API `parse` endpoint to get the rendered HTML, then
- * extracts sections and plain text with cheerio.
- *
- * @example
- * const result = await getWikipediaArticle("Node.js");
- */
 export async function getWikipediaArticle(
   title: string,
   articleOptions: WikipediaArticleOptions = {},
@@ -287,7 +248,6 @@ export async function getWikipediaArticle(
   const lang = articleOptions.lang ?? "en";
   const client = createHttpClient(scraperOptions);
 
-  // Fetch parsed HTML via Action API
   const params = new URLSearchParams({
     action: "parse",
     page: title,
@@ -299,7 +259,6 @@ export async function getWikipediaArticle(
 
   const parseUrl = `${WIKI_ACTION_BASE(lang)}?${params.toString()}`;
 
-  // Also fetch the summary for metadata (description, thumbnail, timestamp)
   const summaryResult = await getWikipediaSummary(title, { lang }, scraperOptions);
 
   try {
