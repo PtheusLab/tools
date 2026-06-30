@@ -60,7 +60,9 @@ if (result.success) {
 
 ## API Reference
 
-### GitHub
+### Registry
+
+**GitHub**
 
 ```typescript
 import { getGitHubRepository, getGitHubUser, getGitHubTrending } from "@ptheus/tools";
@@ -70,7 +72,7 @@ const user = await getGitHubUser("torvalds");
 const trending = await getGitHubTrending({ language: "typescript", since: "weekly" });
 ```
 
-### npm Registry
+**npm**
 
 ```typescript
 import { getNpmPackage, searchNpmPackages } from "@ptheus/tools";
@@ -80,7 +82,9 @@ const scoped = await getNpmPackage("@tanstack/react-query");
 const results = await searchNpmPackages("react state management", { limit: 5 });
 ```
 
-### Hacker News
+### Social
+
+**Hacker News**
 
 ```typescript
 import { getHackerNewsFeed, getHackerNewsItem, getHackerNewsMaxItem } from "@ptheus/tools";
@@ -90,7 +94,9 @@ const item = await getHackerNewsItem(8863);
 const max = await getHackerNewsMaxItem();
 ```
 
-### Exchange Rates
+### Finance
+
+**Exchange Rates**
 
 ```typescript
 import { getExchangeRates, convertCurrency, getSupportedCurrencies } from "@ptheus/tools";
@@ -100,7 +106,9 @@ const converted = await convertCurrency(100, "USD", "IDR");
 const currencies = await getSupportedCurrencies();
 ```
 
-### Wikipedia
+### Encyclopedia
+
+**Wikipedia**
 
 ```typescript
 import { getWikipediaSummary, searchWikipedia, getWikipediaArticle } from "@ptheus/tools";
