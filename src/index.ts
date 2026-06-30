@@ -1,5 +1,6 @@
 export { getGitHubRepository, getGitHubUser, getGitHubTrending } from "./scrapers/registry/github/index.js";
 export { getNpmPackage, searchNpmPackages } from "./scrapers/registry/npm/index.js";
+export { getPypiPackage } from "./scrapers/registry/pypi/index.js";
 export {
   getHackerNewsItem,
   getHackerNewsFeed,
@@ -31,6 +32,9 @@ export type {
   NpmDownloads,
   NpmSearchResult,
   NpmSearchOptions,
+  PypiPackage,
+  PypiPerson,
+  PypiDownloads,
   HackerNewsItem,
   HackerNewsItemType,
   HackerNewsStory,

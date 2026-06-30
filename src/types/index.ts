@@ -14,6 +14,11 @@ export type {
   NpmSearchOptions,
 } from "../scrapers/registry/npm/types.js";
 export type {
+  PypiPackage,
+  PypiPerson,
+  PypiDownloads,
+} from "../scrapers/registry/pypi/types.js";
+export type {
   HackerNewsItem,
   HackerNewsItemType,
   HackerNewsStory,

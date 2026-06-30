@@ -31,6 +31,7 @@
 | Scraper | Functions |
 |---|---|
 | **GitHub** | `getGitHubRepository` · `getGitHubUser` · `getGitHubTrending` |
+| **PyPI** | `getPypiPackage` |
 | **npm Registry** | `getNpmPackage` · `searchNpmPackages` |
 | **Hacker News** | `getHackerNewsFeed` · `getHackerNewsItem` · `getHackerNewsMaxItem` |
 | **Exchange Rates** | `getExchangeRates` · `convertCurrency` · `getSupportedCurrencies` |
@@ -87,6 +88,14 @@ import { getNpmPackage, searchNpmPackages } from "@ptheus/tools";
 const pkg = await getNpmPackage("lodash");
 const scoped = await getNpmPackage("@tanstack/react-query");
 const results = await searchNpmPackages("react state management", { limit: 5 });
+```
+
+**PyPi**
+
+```typescript
+import { getPypiPackage } from "@ptheus/tools";
+
+const pkg = await getPypiPackage("requests");
 ```
 
 ### Social
