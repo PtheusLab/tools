@@ -38,3 +38,11 @@ export type {
   WikipediaSearchOptions,
   WikipediaArticleOptions,
 } from "../scrapers/encyclopedia/wikipedia/types.js";
+
+export type {
+  WikiquotePage,
+  WikiquoteSection,
+  WikiquoteSearchResult,
+  WikiquoteOptions,
+  WikiquoteSearchOptions,
+} from "../scrapers/encyclopedia/wikiquote/types.js";

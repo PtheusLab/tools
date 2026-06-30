@@ -49,4 +49,11 @@ export type {
   WikipediaArticleFull,
   WikipediaSearchOptions,
   WikipediaArticleOptions,
+  WikiquotePage,
+  WikiquoteSection,
+  WikiquoteSearchResult,
+  WikiquoteOptions,
+  WikiquoteSearchOptions,
 } from "./types/index.js";
+
+export { getWikiquotePage, searchWikiquote } from "./scrapers/encyclopedia/wikiquote/index.js";

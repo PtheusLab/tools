@@ -36,6 +36,7 @@
 | **Hacker News** | `getHackerNewsFeed` · `getHackerNewsItem` · `getHackerNewsMaxItem` |
 | **Exchange Rates** | `getExchangeRates` · `convertCurrency` · `getSupportedCurrencies` |
 | **Wikipedia** | `getWikipediaSummary` · `searchWikipedia` · `getWikipediaArticle` |
+| **Wikiquote** | `getWikiquotePage` | `searchWikiquote` |
 
 ---
 
@@ -135,6 +136,18 @@ const article = await getWikipediaArticle("Node.js");
 
 // All three accept a language option (default: "en")
 const idSummary = await getWikipediaSummary("Pemrograman komputer", { lang: "id" });
+```
+
+**Wikiquote**
+
+```typescript
+import { getWikiquotePage, searchWikiquote } from "@ptheus/tools";
+
+const page = await getWikiquotePage("Albert Einstein");
+const results = await searchWikiquote("science", { limit: 5 });
+
+// Supports multiple languages
+const dePage = await getWikiquotePage("Albert Einstein", { lang: "de" });
 ```
 
 ### Scraper Options
