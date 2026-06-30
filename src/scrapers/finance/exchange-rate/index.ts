@@ -9,7 +9,7 @@ const exchangeRateSchema = z.object({
   result: z.literal("success"),
   base_code: z.string(),
   time_last_update_utc: z.string(),
-  rates: z.record(z.number()),
+  rates: z.record(z.string(), z.number()),
 });
 
 export async function getExchangeRates(

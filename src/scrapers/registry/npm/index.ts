@@ -67,15 +67,15 @@ const registryPackageSchema = z.object({
     .union([z.object({ url: z.string() }), z.string()])
     .nullable()
     .optional(),
-  time: z.record(z.string()).optional(),
-  versions: z.record(z.unknown()).optional(),
+  time: z.record(z.string(), z.string()).optional(),
+  versions: z.record(z.string(), z.unknown()).optional(),
   "dist-tags": z.object({ latest: z.string() }).passthrough().optional(),
 });
 
 const versionsDetailsSchema = z.object({
-  dependencies: z.record(z.string()).optional().default({}),
-  devDependencies: z.record(z.string()).optional().default({}),
-  peerDependencies: z.record(z.string()).optional().default({}),
+  dependencies: z.record(z.string(), z.string()).optional().default({}),
+  devDependencies: z.record(z.string(), z.string()).optional().default({}),
+  peerDependencies: z.record(z.string(), z.string()).optional().default({}),
 });
 
 const npmDownloadsSchema = z.object({
@@ -168,8 +168,8 @@ export async function getNpmPackage(
               monthly: monthlyDownloads.data.downloads,
             }
           : null,
-      createdAt: time["created"] ?? "",
-      updatedAt: time["modified"] ?? "",
+      createdAt: (time as Record<string, string | undefined>)["created"] ?? "",
+      updatedAt: (time as Record<string, string | undefined>)["modified"] ?? "",
       versions: versionKeys,
       latestVersion,
       dependencies: latestVersionData.success
