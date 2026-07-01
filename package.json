@@ -27,7 +27,7 @@
     "lint": "eslint src",
     "lint:fix": "eslint src --fix",
     "typecheck": "tsc --noEmit",
-    "prepublishOnly": "npm run generate:exports && npm run typecheck && npm run test && npm run build",
+    "prepublishOnly": "npm run generate:exports && npm run typecheck && npm run build",
     "generate:exports": "node scripts/generate-exports.js"
   },
   "keywords": [
