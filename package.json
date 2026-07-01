@@ -1,6 +1,6 @@
 {
   "name": "@ptheus/tools",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "A collection of ready-to-use web scrapers as importable functions",
   "type": "module",
   "main": "dist/index.js",
