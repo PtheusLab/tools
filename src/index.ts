@@ -60,6 +60,45 @@ export type {
   WikiquoteSearchResult,
   WikiquoteOptions,
   WikiquoteSearchOptions,
+  IpGeoLocation,
+  RandomQuote,
+  QuoteOfTheDay,
+  WeatherLocation,
+  CurrentWeather,
+  DailyForecastEntry,
+  WeatherForecast,
+  WeatherForecastOptions,
+  WordPhonetic,
+  WordDefinition,
+  WordMeaning,
+  DictionaryEntry,
+  RssFeedItem,
+  RssFeed,
+  NewsSearchOptions,
 } from "./types/index.js";
 
 export { getWikiquotePage, searchWikiquote } from "./scrapers/encyclopedia/wikiquote/index.js";
+
+export { getIpGeoLocation } from "./scrapers/network/ip-geo/index.js";
+
+export {
+  getRandomQuote,
+  getQuoteOfTheDay,
+  getRandomQuotes,
+} from "./scrapers/entertainment/quotes/index.js";
+
+export {
+  getWeatherForecast,
+  searchWeatherLocations,
+} from "./scrapers/weather/forecast/index.js";
+
+export {
+  getWordDefinition,
+  getAllWordDefinitions,
+} from "./scrapers/reference/dictionary/index.js";
+
+export {
+  getRssFeed,
+  searchNews,
+  getTopNews,
+} from "./scrapers/news/rss-feed/index.js";

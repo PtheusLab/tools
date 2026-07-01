@@ -54,3 +54,28 @@ export type {
   CryptoPriceOptions,
   CryptoMarketsOptions,
 } from "../scrapers/finance/crypto-price/types.js";
+
+export type { IpGeoLocation } from "../scrapers/network/ip-geo/types.js";
+
+export type { RandomQuote, QuoteOfTheDay } from "../scrapers/entertainment/quotes/types.js";
+
+export type {
+  WeatherLocation,
+  CurrentWeather,
+  DailyForecastEntry,
+  WeatherForecast,
+  WeatherForecastOptions,
+} from "../scrapers/weather/forecast/types.js";
+
+export type {
+  WordPhonetic,
+  WordDefinition,
+  WordMeaning,
+  DictionaryEntry,
+} from "../scrapers/reference/dictionary/types.js";
+
+export type {
+  RssFeedItem,
+  RssFeed,
+  NewsSearchOptions,
+} from "../scrapers/news/rss-feed/types.js";

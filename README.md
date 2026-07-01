@@ -26,7 +26,7 @@
 
 ## Overview
 
-`@ptheus/tools` provides ready-to-use scrapers for common data sources — GitHub, npm, Hacker News, and live exchange rates. Every function follows the same **`Result<T>` pattern**: no exceptions are thrown, ever.
+`@ptheus/tools` provides ready-to-use scrapers for common data sources — GitHub, npm, Hacker News, live exchange rates, and more. Every function follows the same **`Result<T>` pattern**: no exceptions are thrown, ever.
 
 | Scraper | Functions |
 |---|---|
@@ -38,6 +38,11 @@
 | **Crypto Price** | `getCryptoPrice` · `getCryptoMarkets` · `getCoinList` |
 | **Wikipedia** | `getWikipediaSummary` · `searchWikipedia` · `getWikipediaArticle` |
 | **Wikiquote** | `getWikiquotePage` · `searchWikiquote` |
+| **IP Geolocation** | `getIpGeoLocation` |
+| **Quotes** | `getRandomQuote` · `getQuoteOfTheDay` · `getRandomQuotes` |
+| **Weather** | `getWeatherForecast` · `searchWeatherLocations` |
+| **Dictionary** | `getWordDefinition` · `getAllWordDefinitions` |
+| **News / RSS** | `getRssFeed` · `searchNews` · `getTopNews` |
 
 ---
 
@@ -164,6 +169,72 @@ const results = await searchWikiquote("science", { limit: 5 });
 const dePage = await getWikiquotePage("Albert Einstein", { lang: "de" });
 ```
 
+### Network
+
+**IP Geolocation**
+
+```typescript
+import { getIpGeoLocation } from "@ptheus/tools";
+
+const location = await getIpGeoLocation("8.8.8.8");
+console.log(location.data.city, location.data.country);
+
+// Omit the IP to look up the requester's own address
+const self = await getIpGeoLocation();
+```
+
+### Entertainment
+
+**Quotes**
+
+```typescript
+import { getRandomQuote, getQuoteOfTheDay, getRandomQuotes } from "@ptheus/tools";
+
+const quote = await getRandomQuote();
+const today = await getQuoteOfTheDay();
+const batch = await getRandomQuotes(); // ~50 quotes at once
+```
+
+### Weather
+
+**Forecast**
+
+```typescript
+import { getWeatherForecast, searchWeatherLocations } from "@ptheus/tools";
+
+const forecast = await getWeatherForecast("Jakarta", { days: 5 });
+console.log(forecast.data.current.temperatureC);
+console.log(forecast.data.daily);
+
+const matches = await searchWeatherLocations("Springfield");
+```
+
+### Reference
+
+**Dictionary**
+
+```typescript
+import { getWordDefinition, getAllWordDefinitions } from "@ptheus/tools";
+
+const entry = await getWordDefinition("ubiquitous");
+console.log(entry.data.meanings[0].definitions[0].definition);
+
+// All entries (e.g. multiple parts of speech from different sources)
+const entries = await getAllWordDefinitions("run");
+```
+
+### News
+
+**RSS Feed**
+
+```typescript
+import { getRssFeed, searchNews, getTopNews } from "@ptheus/tools";
+
+const feed = await getRssFeed("https://hnrss.org/frontpage");
+const results = await searchNews("artificial intelligence", { limit: 10 });
+const headlines = await getTopNews({ country: "US", lang: "en" });
+```
+
 ### Scraper Options
 
 ```typescript
@@ -228,29 +299,66 @@ if (!result.success) {
     │   └── result.ts
     ├── scrapers/
     │   ├── encyclopedia/
-    │   │   └── wikipedia/
+    │   │   ├── wikipedia/
+    │   │   │   ├── index.ts
+    │   │   │   ├── types.ts
+    │   │   │   └── wikipedia.test.ts
+    │   │   └── wikiquote/
     │   │       ├── index.ts
     │   │       ├── types.ts
-    │   │       └── wikipedia.test.ts
+    │   │       └── wikiquote.test.ts
+    │   ├── entertainment/
+    │   │   └── quotes/
+    │   │       ├── index.ts
+    │   │       ├── types.ts
+    │   │       └── quotes.test.ts
     │   ├── finance/
-    │   │   └── exchange-rate/
+    │   │   ├── exchange-rate/
+    │   │   │   ├── index.ts
+    │   │   │   ├── types.ts
+    │   │   │   └── exchange-rate.test.ts
+    │   │   └── crypto-price/
     │   │       ├── index.ts
     │   │       ├── types.ts
-    │   │       └── exchange-rate.test.ts
+    │   │       └── crypto-price.test.ts
+    │   ├── network/
+    │   │   └── ip-geo/
+    │   │       ├── index.ts
+    │   │       ├── types.ts
+    │   │       └── ip-geo.test.ts
+    │   ├── news/
+    │   │   └── rss-feed/
+    │   │       ├── index.ts
+    │   │       ├── types.ts
+    │   │       └── rss-feed.test.ts
+    │   ├── reference/
+    │   │   └── dictionary/
+    │   │       ├── index.ts
+    │   │       ├── types.ts
+    │   │       └── dictionary.test.ts
     │   ├── registry/
     │   │   ├── github/
     │   │   │   ├── index.ts
     │   │   │   ├── types.ts
     │   │   │   └── github.test.ts
-    │   │   └── npm/
+    │   │   ├── npm/
+    │   │   │   ├── index.ts
+    │   │   │   ├── types.ts
+    │   │   │   └── npm.test.ts
+    │   │   └── pypi/
     │   │       ├── index.ts
     │   │       ├── types.ts
-    │   │       └── npm.test.ts
-    │   └── social/
-    │       └── hacker-news/
+    │   │       └── pypi.test.ts
+    │   ├── social/
+    │   │   └── hacker-news/
+    │   │       ├── index.ts
+    │   │       ├── types.ts
+    │   │       └── hacker-news.test.ts
+    │   └── weather/
+    │       └── forecast/
     │           ├── index.ts
     │           ├── types.ts
-    │           └── hacker-news.test.ts
+    │           └── forecast.test.ts
     ├── types/
     │   └── common.ts
     └── utils/
